@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function () {
 
     // Settings
     Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+
+    // 
 });
 
 require __DIR__ . '/auth.php';
