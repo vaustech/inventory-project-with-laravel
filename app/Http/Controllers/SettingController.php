@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Setting\SettingUpdateRequest;
@@ -25,17 +24,19 @@ class SettingController extends Controller
                 payload: $request->validated()
             );
             $flash = [
+                "isSuccess" => true,
                 "message" => 'Settings updated successfully.'
             ];
         } catch (Exception $e) {
             $flash = [
                 "isSuccess" => false,
                 "message"   => "Settings update failed!",
+                "errors"    => $e->getMessage(),
             ];
 
             Log::error("Settings update failed!", [
                 "message" => $e->getMessage(),
-                "traces"  => $e->getTrace()
+                "traces"  => $e->getTraceAsString(), // Corrected typo and used getTraceAsString()
             ]);
         }
 
